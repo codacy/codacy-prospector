@@ -1,0 +1,12 @@
+/RUNNING_PID
+/logs/
+/project/*-shim.sbt
+/project/project
+target
+.idea
+.DS_Store
+.metals
+.bloop
+.vscode
+__pycache__
+.mypy_cache
