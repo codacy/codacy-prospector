@@ -2,7 +2,6 @@ version: 2.1
 
 orbs:
   codacy: codacy/base@1.0.0
-  codacy_plugins_test: codacy/plugins-test@0.4.0
 
 jobs:
   test_patterns:
@@ -29,10 +28,6 @@ workflows:
       - test_patterns:
           requires:
             - codacy/checkout_and_version
-      - codacy_plugins_test/run:
-          name: plugins_test
-          requires:
-            - test_patterns
       - codacy/shell:
           name: publish_dockerhub
           context: CodacyDocker
@@ -44,7 +39,7 @@ workflows:
             docker push codacy/$CIRCLE_PROJECT_REPONAME:$(cat .version)
             docker push codacy/$CIRCLE_PROJECT_REPONAME:latest
           requires:
-            - plugins_test
+            - test_patterns
           filters:
             branches:
               only:
