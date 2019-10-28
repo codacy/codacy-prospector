@@ -4,7 +4,7 @@ orbs:
   codacy: codacy/base@1.0.0
 
 jobs:
-  test_patterns:
+  build_docker_image:
     machine:
       image: ubuntu-1604:201903-01
     working_directory: ~/workdir
@@ -25,7 +25,7 @@ workflows:
   compile_test_deploy:
     jobs:
       - codacy/checkout_and_version
-      - test_patterns:
+      - build_docker_image:
           requires:
             - codacy/checkout_and_version
       - codacy/shell:
@@ -39,7 +39,7 @@ workflows:
             docker push codacy/$CIRCLE_PROJECT_REPONAME:$(cat .version)
             docker push codacy/$CIRCLE_PROJECT_REPONAME:latest
           requires:
-            - test_patterns
+            - build_docker_image
           filters:
             branches:
               only:
