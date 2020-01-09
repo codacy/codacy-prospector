@@ -1,7 +1,8 @@
 version: 2.1
 
 orbs:
-  codacy: codacy/base@1.0.0
+  codacy: codacy/base@1.2.1
+  codacy_plugins_test: codacy/plugins-test@0.7.0
 
 jobs:
   build_docker_image:
@@ -28,6 +29,12 @@ workflows:
       - build_docker_image:
           requires:
             - codacy/checkout_and_version
+      - codacy_plugins_test/run:
+          name: plugins_test
+          run_multiple_tests: true
+          run_json_tests: false
+          requires:
+            - build_docker_image
       - codacy/shell:
           name: publish_dockerhub
           context: CodacyDocker
