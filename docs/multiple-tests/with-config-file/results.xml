@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<checkstyle version="1.5">
+    <file name="example.py">
+        <error source="pylint_no-value-for-parameter" line="114" message="No value for argument 'on_delete' in constructor call" severity="info" />
+        <error source="pylint_no-value-for-parameter" line="99" message="No value for argument 'on_delete' in constructor call" severity="info" />
+        <error source="pylint_no-value-for-parameter" line="100" message="No value for argument 'on_delete' in constructor call" severity="info" />
+        <error source="pylint_no-value-for-parameter" line="125" message="No value for argument 'on_delete' in constructor call" severity="info" />
+
+        <error source="pep257_D212" line="1" message="Multi-line docstring summary should start at the first line" severity="info" />
+
+        <error source="mypy_error" line="9" message="No library stub file for module 'django.db'" severity="info" />
+        <error source="mypy_error" line="10" message="No library stub file for module 'django.db.models'" severity="info" />
+        <error source="mypy_note" line="9" message="(Stub files are from https://github.com/python/typeshed)" severity="info" />
+    </file>
+</checkstyle>
