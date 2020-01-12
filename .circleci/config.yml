@@ -1,32 +1,21 @@
 version: 2.1
 
 orbs:
-  codacy: codacy/base@1.2.1
-  codacy_plugins_test: codacy/plugins-test@0.7.0
+  codacy: codacy/base@2.0.1
+  codacy_plugins_test: codacy/plugins-test@0.7.1
 
-jobs:
-  build_docker_image:
-    machine:
-      image: ubuntu-1604:201903-01
-    working_directory: ~/workdir
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run:
-          command: |
-            docker build -t $CIRCLE_PROJECT_REPONAME:latest .
-            docker run $CIRCLE_PROJECT_REPONAME:latest codacy_prospector_test.py
-            docker save --output ~/workdir/docker-image.tar $CIRCLE_PROJECT_REPONAME:latest
-      - persist_to_workspace:
-          paths:
-            - workdir/*
-          root: ~/
 workflows:
   version: 2
   compile_test_deploy:
     jobs:
       - codacy/checkout_and_version
-      - build_docker_image:
+      - codacy/shell:
+          name: publish_docker_local
+          cmd: |
+            docker build -t $CIRCLE_PROJECT_REPONAME:latest .
+            docker run $CIRCLE_PROJECT_REPONAME:latest codacy_prospector_test.py
+            docker save --output docker-image.tar $CIRCLE_PROJECT_REPONAME:latest
+          persist_to_workspace: true
           requires:
             - codacy/checkout_and_version
       - codacy_plugins_test/run:
@@ -34,7 +23,7 @@ workflows:
           run_multiple_tests: true
           run_json_tests: false
           requires:
-            - build_docker_image
+            - publish_docker_local
       - codacy/shell:
           name: publish_dockerhub
           context: CodacyDocker
@@ -46,7 +35,7 @@ workflows:
             docker push codacy/$CIRCLE_PROJECT_REPONAME:$(cat .version)
             docker push codacy/$CIRCLE_PROJECT_REPONAME:latest
           requires:
-            - build_docker_image
+            - publish_docker_local
           filters:
             branches:
               only:
