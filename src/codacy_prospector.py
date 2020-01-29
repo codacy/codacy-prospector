@@ -17,19 +17,11 @@ def timeout(time):
     signal.alarm(time)
     yield
 
-DEFAULT_TIMEOUT = 16 * 60
+DEFAULT_TIMEOUT = 15 * 60
 def getTimeout(timeoutString):
-    l = timeoutString.split()
-    if len(l) != 2 or not l[0].isdigit():
+    if not timeoutString.isdigit():
         return DEFAULT_TIMEOUT
-    elif l[1] == "second" or l[1] == "seconds":
-        return int(l[0])
-    elif l[1] == "minute" or l[1] == "minutes":
-        return int(l[0]) * 60
-    elif l[1] == "hour" or l[1] == "hours":
-        return int(l[0]) * 60 * 60
-    else:
-        return DEFAULT_TIMEOUT
+    return int(timeoutString)
 
 class Result:
     def __init__(self, filename, message, patternId, line):
@@ -53,7 +45,7 @@ def readJsonFile(path):
 
 def runProspector(options, files, cwd=None):
     process = Popen(
-        ['python3', '-m', 'prospector', ] + options + files,
+        ['python3', '-m', 'prospector'] + options + files,
         stdout=PIPE,
         cwd=cwd
     )
@@ -131,7 +123,7 @@ def resultsToJson(results):
     return os.linesep.join([toJson(res) for res in results])
 
 if __name__ == '__main__':
-    with timeout(getTimeout(os.environ.get('TIMEOUT') or '')):
+    with timeout(getTimeout(os.environ.get('TIMEOUT_SECONDS') or '')):
         try:
             results = runTool('/.codacyrc', '/src')
             print(resultsToJson(results))

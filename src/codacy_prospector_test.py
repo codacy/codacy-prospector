@@ -101,15 +101,8 @@ raise NotImplementedError''')]
         self.assertEqual(len(result), 12)
 
     def test_timeout(self):
-        self.assertEqual(getTimeout(" 60    second"), 60)
-        self.assertEqual(getTimeout(" 60    seconds"), 60)
-        self.assertEqual(getTimeout("1 minute"), 60)
-        self.assertEqual(getTimeout(" 2 minutes"), 120)
+        self.assertEqual(getTimeout("60"), 60)
         self.assertEqual(getTimeout("blabla"), DEFAULT_TIMEOUT)
-        self.assertEqual(getTimeout("blabla blabla"), DEFAULT_TIMEOUT)
-        self.assertEqual(getTimeout("10 blabla"), DEFAULT_TIMEOUT)
-        self.assertEqual(getTimeout("1 hour"), 60 * 60)
-        self.assertEqual(getTimeout("1 hours"), 60 * 60)
 
 if __name__ == '__main__':
     unittest.main()
