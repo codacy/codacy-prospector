@@ -14,25 +14,25 @@
   {
     "patternId": "pyflakes",
     "title": "pyflakes tool",
-    "description": "",
+    "description": "A simple program which checks Python source files for errors.",
     "timeToFix": 5
   },
   {
     "patternId": "mccabe",
     "title": "mccabe tool",
-    "description": "",
+    "description": "McCabe is a complexity checker for Python.",
     "timeToFix": 5
   },
   {
     "patternId": "dodgy",
     "title": "dodgy tool",
-    "description": "",
+    "description": "Dodgy is a very basic toot to detect things such as accidental passwords or secret keys hard coded into files.",
     "timeToFix": 5
   },
   {
     "patternId": "pydocstyle",
     "title": "pydocstyle tool",
-    "description": "",
+    "description": "pydocstyle is a static analysis tool for checking compliance with Python docstring conventions.",
     "timeToFix": 5
   },
   {
@@ -50,7 +50,7 @@
   {
     "patternId": "vulture",
     "title": "vulture tool",
-    "description": "",
+    "description": "Vulture finds unused code in Python programs.",
     "timeToFix": 5
   },
   {

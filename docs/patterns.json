@@ -24,8 +24,9 @@
     },
     {
       "patternId": "dodgy",
-      "category": "CodeStyle",
-      "level": "Info"
+      "category": "Security",
+      "subcategory": "InsecureStorage",
+      "level": "Error"
     },
     {
       "patternId": "pydocstyle",
