@@ -1,6 +1,6 @@
 {
   "name": "Prospector",
-  "version": "1.1.7",
+  "version": "1.2.0",
   "patterns": [
     {
       "patternId": "pylint",
@@ -59,8 +59,8 @@
     },
     {
       "patternId": "bandit",
-      "category": "CodeStyle",
-      "level": "Info"
+      "category": "Security",
+      "level": "Warning"
     }
   ]
 }
