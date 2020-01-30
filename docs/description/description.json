@@ -1,73 +1,73 @@
 [
   {
     "patternId": "pylint",
-    "title": "Enables pylint tool to be launched by Prospector",
-    "description": "",
+    "title": "Pylint tool",
+    "description": "Pylint is the most comprehensive static analysis tool for Python. It is extremely thorough and is the source of most messages that prospector outputs.",
     "timeToFix": 5
   },
   {
     "patternId": "pep8",
-    "title": "Enables pep8 tool to be launched by Prospector",
+    "title": "pep8 tool",
     "description": "PEP 8 -- Style Guide for Python Code",
     "timeToFix": 5
   },
   {
     "patternId": "pyflakes",
-    "title": "Enables pyflakes tool to be launched by Prospector",
+    "title": "pyflakes tool",
     "description": "",
     "timeToFix": 5
   },
   {
     "patternId": "mccabe",
-    "title": "Enables mccabe tool to be launched by Prospector",
+    "title": "mccabe tool",
     "description": "",
     "timeToFix": 5
   },
   {
     "patternId": "dodgy",
-    "title": "Enables dodgy tool to be launched by Prospector",
+    "title": "dodgy tool",
     "description": "",
     "timeToFix": 5
   },
   {
     "patternId": "pydocstyle",
-    "title": "Enables pydocstyle tool to be launched by Prospector",
+    "title": "pydocstyle tool",
     "description": "",
     "timeToFix": 5
   },
   {
     "patternId": "pep257",
-    "title": "Enables pep257 tool to be launched by Prospector",
+    "title": "pep257 tool",
     "description": "pep257 is a static analysis tool for checking compliance with Python PEP 257.",
     "timeToFix": 5
   },
   {
     "patternId": "frosted",
-    "title": "Enables frosted tool to be launched by Prospector",
+    "title": "frosted tool",
     "description": "Frosted is a fork of pyflakes that aims at more open contribution from the outside public, a smaller more maintainable code base, and a better Python checker for all.",
     "timeToFix": 5
   },
   {
     "patternId": "vulture",
-    "title": "Enables vulture tool to be launched by Prospector",
+    "title": "vulture tool",
     "description": "",
     "timeToFix": 5
   },
   {
     "patternId": "pyroma",
-    "title": "Enables pyroma tool to be launched by Prospector",
+    "title": "pyroma tool",
     "description": "",
     "timeToFix": 5
   },
   {
     "patternId": "mypy",
-    "title": "Enables mypy tool to be launched by Prospector",
-    "description": "",
+    "title": "mypy tool",
+    "description": "Mypy is an experimental optional static type checker for Python that aims to combine the benefits of dynamic typing and static typing.",
     "timeToFix": 5
   },
   {
     "patternId": "bandit",
-    "title": "Enables bandit tool to be launched by Prospector",
+    "title": "Bandit tool",
     "description": "",
     "timeToFix": 5
   }
