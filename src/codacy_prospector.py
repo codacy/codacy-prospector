@@ -74,8 +74,9 @@ def parseResult(json_text):
     messages = json.loads(json_text)["messages"]
     def createResults():
         for res in messages:
-            location = res['location']
-            yield Result(filename=location['path'], message=res['message'], patternId=res['source'], line=location['line'])
+            if res['code'] != 'failure':
+                location = res['location']
+                yield Result(filename=location['path'], message=res['message'], patternId=res['source'], line=location['line'])
     return list(createResults())
 
 def walkDirectory(directory):
