@@ -63,42 +63,32 @@ class ProspectorTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             codacyrcPath = os.path.join(directory, ".codacyrc")
             with open(codacyrcPath, "w") as codacyrc:
-                print('{"tools":[{"name":"Prospector"}],"files":["C0111.py"]}', file=codacyrc)
+                print('{"tools":[{"name":"Prospector", "patterns":[{"patternId":"pyroma"}]}],"files":["C0111.py"]}', file=codacyrc)
             
+            expectedOptions = {'--without-tool=pylint',
+                               '--without-tool=pydocstyle',
+                               '--without-tool=dodgy',
+                               '--without-tool=mccabe',
+                               '--without-tool=pyflakes',
+                               '--without-tool=pep257',
+                               '--without-tool=pep8',
+                               '--without-tool=profile-validator',
+                               '--with-tool=pyroma'}
             expectedFiles = ['C0111.py']
             
-            files = readConfiguration(codacyrcPath, "docs/test")
+            (options, files) = readConfiguration(codacyrcPath, "docs/test")
+            self.assertEqual(expectedOptions, set(options))
             self.assertEqual(expectedFiles, files)
-
-    def test_E0711(self):
-        config = '{"tools":[{"name":"Prospector"}],"files":["E0711.py"]}'
-        sources = [('E0711.py',
-'''raise NotImplemented
-raise NotImplementedError''')]
-        expected_result = [
-            Result(
-                'E0711.py',
-                'NotImplemented raised - should raise NotImplementedError',
-                'pylint_notimplemented-raised',
-                1),
-            Result(
-                'E0711.py',
-                'Raising NotImplementedType while only classes or instances are allowed',
-                'pylint_raising-bad-type',
-                1),
-            Result('E0711.py','Unreachable code','pylint_unreachable',2)]
-        result = withConfigAndSources(config, sources)
-        self.assertEqual(result, expected_result)
 
     def test_python3_file(self):
         (config, sources) = python3_file()
         result = withConfigAndSources(config, sources)
-        self.assertEqual(len(result), 12)
+        self.assertEqual(len(result), 4)
 
     def test_no_conf(self):
         (_, sources) = python3_file()
         result = withConfigAndSources(None, sources)
-        self.assertEqual(len(result), 12)
+        self.assertEqual(len(result), 4)
 
     def test_timeout(self):
         self.assertEqual(getTimeout("60"), 60)

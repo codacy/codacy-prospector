@@ -1,5 +1,67 @@
 {
   "name": "Prospector",
-  "version": "1.1.7",
-  "patterns": []
+  "version": "1.2.0",
+  "patterns": [
+    {
+      "patternId": "pylint",
+      "category": "CodeStyle",
+      "level": "Info"
+    },
+    {
+      "patternId": "pep8",
+      "category": "CodeStyle",
+      "level": "Info"
+    },
+    {
+      "patternId": "pyflakes",
+      "category": "CodeStyle",
+      "level": "Info"
+    },
+    {
+      "patternId": "mccabe",
+      "category": "CodeStyle",
+      "level": "Info"
+    },
+    {
+      "patternId": "dodgy",
+      "category": "Security",
+      "subcategory": "InsecureStorage",
+      "level": "Error"
+    },
+    {
+      "patternId": "pydocstyle",
+      "category": "CodeStyle",
+      "level": "Info"
+    },
+    {
+      "patternId": "pep257",
+      "category": "CodeStyle",
+      "level": "Info"
+    },
+    {
+      "patternId": "frosted",
+      "category": "CodeStyle",
+      "level": "Info"
+    },
+    {
+      "patternId": "vulture",
+      "category": "CodeStyle",
+      "level": "Info"
+    },
+    {
+      "patternId": "pyroma",
+      "category": "CodeStyle",
+      "level": "Info"
+    },
+    {
+      "patternId": "mypy",
+      "category": "CodeStyle",
+      "level": "Info"
+    },
+    {
+      "patternId": "bandit",
+      "category": "Security",
+      "level": "Warning"
+    }
+  ]
 }
