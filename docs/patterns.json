@@ -33,11 +33,6 @@
       "level": "Info"
     },
     {
-      "patternId": "profile-validator",
-      "category": "CodeStyle",
-      "level": "Info"
-    },
-    {
       "patternId": "pep257",
       "category": "CodeStyle",
       "level": "Info"

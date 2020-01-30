@@ -36,21 +36,15 @@
     "timeToFix": 5
   },
   {
-    "patternId": "profile-validator",
-    "title": "Enables profile-validator tool to be launched by Prospector",
-    "description": "",
-    "timeToFix": 5
-  },
-  {
     "patternId": "pep257",
     "title": "Enables pep257 tool to be launched by Prospector",
-    "description": "",
+    "description": "pep257 is a static analysis tool for checking compliance with Python PEP 257.",
     "timeToFix": 5
   },
   {
     "patternId": "frosted",
     "title": "Enables frosted tool to be launched by Prospector",
-    "description": "",
+    "description": "Frosted is a fork of pyflakes that aims at more open contribution from the outside public, a smaller more maintainable code base, and a better Python checker for all.",
     "timeToFix": 5
   },
   {
