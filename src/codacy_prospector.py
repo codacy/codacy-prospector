@@ -95,8 +95,8 @@ def readConfiguration(configFile, srcDir):
         files = configuration.get('files') or allFiles()
         tools = [t for t in configuration['tools'] if t['name'] == 'Prospector']
         if tools and 'patterns' in tools[0]:
-            pylint = tools[0]
-            tools = set([p['patternId'] for p in pylint.get('patterns') or []])
+            prospector = tools[0]
+            tools = set([p['patternId'] for p in prospector.get('patterns') or []])
             tools_to_disable = default_tools.difference(tools)
             tools_to_enable = extra_tools.intersection(tools)
             options = [f"--without-tool={t}" for t in tools_to_disable] + [f"--with-tool={t}" for t in tools_to_enable] 
