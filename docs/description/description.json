@@ -1,0 +1,80 @@
+[
+  {
+    "patternId": "pylint",
+    "title": "Enables pylint tool to be launched by Prospector",
+    "description": "",
+    "timeToFix": 5
+  },
+  {
+    "patternId": "pep8",
+    "title": "Enables pep8 tool to be launched by Prospector",
+    "description": "PEP 8 -- Style Guide for Python Code",
+    "timeToFix": 5
+  },
+  {
+    "patternId": "pyflakes",
+    "title": "Enables pyflakes tool to be launched by Prospector",
+    "description": "",
+    "timeToFix": 5
+  },
+  {
+    "patternId": "mccabe",
+    "title": "Enables mccabe tool to be launched by Prospector",
+    "description": "",
+    "timeToFix": 5
+  },
+  {
+    "patternId": "dodgy",
+    "title": "Enables dodgy tool to be launched by Prospector",
+    "description": "",
+    "timeToFix": 5
+  },
+  {
+    "patternId": "pydocstyle",
+    "title": "Enables pydocstyle tool to be launched by Prospector",
+    "description": "",
+    "timeToFix": 5
+  },
+  {
+    "patternId": "profile-validator",
+    "title": "Enables profile-validator tool to be launched by Prospector",
+    "description": "",
+    "timeToFix": 5
+  },
+  {
+    "patternId": "pep257",
+    "title": "Enables pep257 tool to be launched by Prospector",
+    "description": "",
+    "timeToFix": 5
+  },
+  {
+    "patternId": "frosted",
+    "title": "Enables frosted tool to be launched by Prospector",
+    "description": "",
+    "timeToFix": 5
+  },
+  {
+    "patternId": "vulture",
+    "title": "Enables vulture tool to be launched by Prospector",
+    "description": "",
+    "timeToFix": 5
+  },
+  {
+    "patternId": "pyroma",
+    "title": "Enables pyroma tool to be launched by Prospector",
+    "description": "",
+    "timeToFix": 5
+  },
+  {
+    "patternId": "mypy",
+    "title": "Enables mypy tool to be launched by Prospector",
+    "description": "",
+    "timeToFix": 5
+  },
+  {
+    "patternId": "bandit",
+    "title": "Enables bandit tool to be launched by Prospector",
+    "description": "",
+    "timeToFix": 5
+  }
+]

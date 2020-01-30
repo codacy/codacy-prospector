@@ -75,7 +75,7 @@ def parseResult(json_text):
     def createResults():
         for res in messages:
             location = res['location']
-            yield Result(filename=location['path'], message=res['message'], patternId=f"{res['source']}_{res['code']}", line=location['line'])
+            yield Result(filename=location['path'], message=res['message'], patternId=res['source'], line=location['line'])
     return list(createResults())
 
 def walkDirectory(directory):
@@ -85,35 +85,45 @@ def walkDirectory(directory):
             yield res
     return list(generate())
 
+default_tools = {'pylint', 'pep8', 'pyflakes', 'mccabe', 'dodgy', 'pydocstyle', 'profile-validator', 'pep257'}
+extra_tools = {'frosted', 'vulture', 'pyroma', 'mypy'}
+
 def readConfiguration(configFile, srcDir):
     def allFiles(): return walkDirectory(srcDir)
     try:
         configuration = readJsonFile(configFile)
         files = configuration.get('files') or allFiles()
+        tools = [t for t in configuration['tools'] if t['name'] == 'Prospector']
+        if tools and 'patterns' in tools[0]:
+            pylint = tools[0]
+            tools = set([p['patternId'] for p in pylint.get('patterns') or []])
+            tools_to_disable = default_tools.difference(tools)
+            tools_to_enable = extra_tools.intersection(tools)
+            options = [f"--without-tool={t}" for t in tools_to_disable] + [f"--with-tool={t}" for t in tools_to_enable] 
+        else:
+            options = []
+            
     except Exception:
         files = allFiles()
-    return [f for f in files if isPython3(f)]
+        options = []
+    return (options, [f for f in files if isPython3(f)])
 
 def chunks(lst,n):
     return [lst[i:i + n] for i in range(0, len(lst), n)]
 
-def runProspectorWith(files, cwd):
-    res = runProspector([
-        '--output-format=json',
-        '--with-tool=frosted',
-        '--with-tool=vulture',
-        '--with-tool=pyroma',
-        '--with-tool=mypy'],
+def runProspectorWith(options, files, cwd):
+    res = runProspector(
+        ['--output-format=json'] + options,
         files,
         cwd)
     return parseResult(res)
 
 def runTool(configFile, srcDir):
-    files = readConfiguration(configFile, srcDir)
+    (options, files) = readConfiguration(configFile, srcDir)
     res = []
     filesWithPath = [os.path.join(srcDir,f) for f in files]
     for chunk in chunks(filesWithPath, 10):
-        res.extend(runProspectorWith(chunk, srcDir))
+        res.extend(runProspectorWith(options, chunk, srcDir))
     for result in res:
         if result.filename.startswith(srcDir):
             result.filename = os.path.relpath(result.filename, srcDir)
