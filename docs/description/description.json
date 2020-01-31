@@ -8,7 +8,7 @@
   {
     "patternId": "pep8",
     "title": "pep8 tool",
-    "description": "PEP 8 -- Style Guide for Python Code",
+    "description": "pep8 is a tool to check your Python code against some of the style conventions in PEP 8.",
     "timeToFix": 5
   },
   {
@@ -26,7 +26,7 @@
   {
     "patternId": "dodgy",
     "title": "dodgy tool",
-    "description": "Dodgy is a very basic toot to detect things such as accidental passwords or secret keys hard coded into files.",
+    "description": "Dodgy is a very basic tool to detect things such as accidental passwords or secret keys hard coded into files.",
     "timeToFix": 5
   },
   {
@@ -68,7 +68,7 @@
   {
     "patternId": "bandit",
     "title": "Bandit tool",
-    "description": "",
+    "description": "Bandit is a tool designed to find common security issues in Python code.",
     "timeToFix": 5
   }
 ]
