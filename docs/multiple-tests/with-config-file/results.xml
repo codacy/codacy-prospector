@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <checkstyle version="1.5">
     <file name="example.py">
-        <error source="pylint" line="114" message="No value for argument 'on_delete' in constructor call" severity="info" />
-        <error source="pylint" line="99" message="No value for argument 'on_delete' in constructor call" severity="info" />
-        <error source="pylint" line="100" message="No value for argument 'on_delete' in constructor call" severity="info" />
-        <error source="pylint" line="125" message="No value for argument 'on_delete' in constructor call" severity="info" />
+        <error source="pylint" line="114" message="No value for argument 'on_delete' in constructor call (no-value-for-parameter)" severity="info" />
+        <error source="pylint" line="99" message="No value for argument 'on_delete' in constructor call (no-value-for-parameter)" severity="info" />
+        <error source="pylint" line="100" message="No value for argument 'on_delete' in constructor call (no-value-for-parameter)" severity="info" />
+        <error source="pylint" line="125" message="No value for argument 'on_delete' in constructor call (no-value-for-parameter)" severity="info" />
 
-        <error source="pep257" line="1" message="Multi-line docstring summary should start at the first line" severity="info" />
+        <error source="pep257" line="1" message="Multi-line docstring summary should start at the first line (D212)" severity="info" />
     </file>
 </checkstyle>
