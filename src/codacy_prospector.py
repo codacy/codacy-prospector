@@ -76,7 +76,7 @@ def parseResult(json_text):
         for res in messages:
             if res['code'] != 'failure':
                 location = res['location']
-                yield Result(filename=location['path'], message=res['message'], patternId=res['source'], line=location['line'])
+                yield Result(filename=location['path'], message=f"{res['message']} ({res['code']})", patternId=res['source'], line=location['line'])
     return list(createResults())
 
 def walkDirectory(directory):

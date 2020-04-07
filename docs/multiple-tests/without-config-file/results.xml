@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <checkstyle version="1.5">
     <file name="example.py">
-        <error source="pep257" line="1" message="Multi-line docstring summary should start at the first line" severity="info" />
+        <error source="pep257" line="1" message="Multi-line docstring summary should start at the first line (D212)" severity="info" />
     </file>
 </checkstyle>
