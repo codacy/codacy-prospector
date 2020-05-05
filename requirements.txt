@@ -1,5 +1,5 @@
 mypy==0.770
 prospector[with_everything]==1.2.0
 jsonpickle==1.4.1
-Django==3.0.5
+Django==3.0.6
 Flask==1.1.2
