@@ -94,7 +94,7 @@ def readConfiguration(configFile, srcDir):
     try:
         configuration = readJsonFile(configFile)
         files = configuration.get('files') or allFiles()
-        tools = [t for t in configuration['tools'] if t['name'] == 'Prospector']
+        tools = [t for t in configuration['tools'] if t['name'] == 'prospector']
         if tools and 'patterns' in tools[0]:
             prospector = tools[0]
             tools = set([p['patternId'] for p in prospector.get('patterns') or []])

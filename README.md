@@ -21,15 +21,6 @@ The docker is ran with the following command:
   docker run -it -v $srcDir:/src codacy-prospector:latest
   ```
 
-## Generate Docs
-
- 1. Update the version in `docs/patterns.json`
- 2. Run the DocGenerator:
-
-```bash
-sbt "doc-generator/run"
-```
-
 ## Test
 
 We use the [codacy-plugins-test](https://github.com/codacy/codacy-plugins-test) to test our external tools integration.

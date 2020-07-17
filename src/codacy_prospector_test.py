@@ -37,7 +37,7 @@ def dup_function():
     return 2
 '''
     sources = [('E0102.py', source)]
-    config = '{"tools":[{"name":"Prospector"}],"files":["E0102.py"]}'
+    config = '{"tools":[{"name":"prospector"}],"files":["E0102.py"]}'
     return config, sources
 
 class ResultTest(unittest.TestCase):
@@ -63,7 +63,7 @@ class ProspectorTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             codacyrcPath = os.path.join(directory, ".codacyrc")
             with open(codacyrcPath, "w") as codacyrc:
-                print('{"tools":[{"name":"Prospector", "patterns":[{"patternId":"pyroma"}]}],"files":["C0111.py"]}', file=codacyrc)
+                print('{"tools":[{"name":"prospector", "patterns":[{"patternId":"pyroma"}]}],"files":["C0111.py"]}', file=codacyrc)
             
             expectedOptions = {'--without-tool=pylint',
                                '--without-tool=pydocstyle',
