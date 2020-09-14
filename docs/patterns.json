@@ -5,63 +5,75 @@
     {
       "patternId": "pylint",
       "category": "CodeStyle",
-      "level": "Info"
+      "level": "Info",
+      "enabled": false
     },
     {
       "patternId": "pep8",
       "category": "CodeStyle",
-      "level": "Info"
+      "level": "Info",
+      "enabled": false
     },
     {
       "patternId": "pyflakes",
       "category": "CodeStyle",
-      "level": "Info"
+      "level": "Info",
+      "enabled": true
     },
     {
       "patternId": "mccabe",
       "category": "CodeStyle",
-      "level": "Info"
+      "level": "Info",
+      "enabled": true
     },
     {
       "patternId": "dodgy",
       "category": "Security",
       "subcategory": "InsecureStorage",
-      "level": "Error"
+      "level": "Error",
+      "enabled": true
     },
     {
       "patternId": "pydocstyle",
       "category": "CodeStyle",
-      "level": "Info"
+      "level": "Info",
+      "enabled": true
     },
     {
       "patternId": "pep257",
       "category": "CodeStyle",
-      "level": "Info"
+      "level": "Info",
+      "enabled": true
     },
     {
       "patternId": "frosted",
       "category": "CodeStyle",
-      "level": "Info"
+      "level": "Info",
+      "enabled": false
     },
     {
       "patternId": "vulture",
       "category": "CodeStyle",
-      "level": "Info"
+      "level": "Info",
+      "enabled": false
     },
     {
       "patternId": "pyroma",
       "category": "CodeStyle",
-      "level": "Info"
+      "level": "Info",
+      "enabled": false
     },
     {
       "patternId": "mypy",
       "category": "CodeStyle",
-      "level": "Info"
+      "level": "Info",
+      "enabled": false
     },
     {
       "patternId": "bandit",
       "category": "Security",
-      "level": "Warning"
+      "level": "Warning",
+      "enabled": false
     }
   ]
 }
