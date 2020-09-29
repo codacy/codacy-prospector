@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checkstyle version="1.5">
+    <file name="hello.py">
+        <error source="pep257" line="2" message="1 blank line required before class docstring (found 0) (D203)" severity="info" />
+    </file>
+</checkstyle>

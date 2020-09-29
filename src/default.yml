@@ -1,0 +1,36 @@
+pylint:
+  run: true
+
+pep8:
+  run: true
+
+pyflakes:
+  run: true
+
+mccabe:
+  run: true
+
+dodgy:
+  run: true
+
+pydocstyle:
+  run: true
+
+profile-validator:
+  run: true
+
+pep257:
+  disable:
+    - D211
+
+frosted:
+  run: true
+
+pyroma:
+  run: true
+
+vulture:
+  run: true
+
+mypy:
+  run: true

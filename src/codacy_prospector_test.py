@@ -73,7 +73,10 @@ class ProspectorTest(unittest.TestCase):
                                '--without-tool=pep257',
                                '--without-tool=pep8',
                                '--without-tool=profile-validator',
-                               '--with-tool=pyroma'}
+                               '--without-tool=mypy',
+                               '--without-tool=vulture',
+                               '--without-tool=frosted',
+                               '--profile=/default.yml'}
             expectedFiles = ['C0111.py']
             
             (options, files) = readConfiguration(codacyrcPath, "docs/test")

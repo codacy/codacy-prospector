@@ -8,6 +8,7 @@ import glob
 import re
 import signal
 from contextlib import contextmanager
+from os import path
 
 @contextmanager
 def timeout(time):
@@ -88,6 +89,9 @@ def walkDirectory(directory):
 
 default_tools = {'pylint', 'pep8', 'pyflakes', 'mccabe', 'dodgy', 'pydocstyle', 'profile-validator', 'pep257'}
 extra_tools = {'frosted', 'vulture', 'pyroma', 'mypy'}
+all_tools = {*default_tools, *extra_tools}
+
+DEFAULT_CONFIG_FILE = '/default.yml'
 
 def readConfiguration(configFile, srcDir):
     def allFiles(): return walkDirectory(srcDir)
@@ -98,9 +102,12 @@ def readConfiguration(configFile, srcDir):
         if tools and 'patterns' in tools[0]:
             prospector = tools[0]
             tools = set([p['patternId'] for p in prospector.get('patterns') or []])
-            tools_to_disable = default_tools.difference(tools)
-            tools_to_enable = extra_tools.intersection(tools)
-            options = [f"--without-tool={t}" for t in tools_to_disable] + [f"--with-tool={t}" for t in tools_to_enable] 
+            tools_to_disable = all_tools.difference(tools)
+
+            srcConfigurationFile = path.join(srcDir, '.prospector.yml')
+            prospector_config_file = srcConfigurationFile if path.exists(srcConfigurationFile) else DEFAULT_CONFIG_FILE
+
+            options = [f"--without-tool={t}" for t in tools_to_disable] + [f"--profile={prospector_config_file}"] 
         else:
             options = []
             
