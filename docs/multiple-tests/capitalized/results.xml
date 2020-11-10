@@ -6,5 +6,7 @@
         <error source="pep257" line="7" message="One-line docstring should fit on one line with quotes (found 3) (D200)" severity="info" />
         <error source="pep257" line="2" message="Multi-line docstring summary should start at the first line (D212)" severity="info" />
         <error source="pep257" line="7" message="Multi-line docstring summary should start at the first line (D212)" severity="info" />
+        <error source="vulture" line="1" message="Unused function 'non_capitalized' (unused-function)" severity="info" />
+        <error source="vulture" line="6" message="Unused function 'capitalized' (unused-function)" severity="info" />
     </file>
 </checkstyle>
