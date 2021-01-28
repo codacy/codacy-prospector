@@ -91,22 +91,19 @@ extra_tools = {'frosted', 'vulture', 'pyroma', 'mypy'}
 
 def readConfiguration(configFile, srcDir):
     def allFiles(): return walkDirectory(srcDir)
-    try:
-        configuration = readJsonFile(configFile)
-        files = configuration.get('files') or allFiles()
-        tools = [t for t in configuration['tools'] if t['name'] == 'prospector']
-        if tools and 'patterns' in tools[0]:
-            prospector = tools[0]
-            tools = set([p['patternId'] for p in prospector.get('patterns') or []])
-            tools_to_disable = default_tools.difference(tools)
-            tools_to_enable = extra_tools.intersection(tools)
-            options = [f"--without-tool={t}" for t in tools_to_disable] + [f"--with-tool={t}" for t in tools_to_enable] 
-        else:
-            options = []
-            
-    except Exception:
-        files = allFiles()
+
+    configuration = readJsonFile(configFile)
+    files = configuration.get('files') or allFiles()
+    tools = [t for t in configuration.get('tools') or [] if t.get('name') == 'prospector']
+    if tools and len(tools) > 0 and 'patterns' in tools[0]:
+        prospector = tools[0]
+        tools = set([p['patternId'] for p in prospector.get('patterns') or []])
+        tools_to_disable = default_tools.difference(tools)
+        tools_to_enable = extra_tools.intersection(tools)
+        options = [f"--without-tool={t}" for t in tools_to_disable] + [f"--with-tool={t}" for t in tools_to_enable]
+    else:
         options = []
+
     return (options, [f for f in files if isPython3(f)])
 
 def chunks(lst,n):
