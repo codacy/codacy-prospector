@@ -74,7 +74,7 @@ def parseResult(json_text):
     messages = json.loads(json_text)["messages"]
     def createResults():
         for res in messages:
-            if res['code'] != 'failure':
+            if res['code'] != 'failure' and res['code'] != 'import-error':
                 location = res['location']
                 yield Result(filename=location['path'], message=f"{res['message']} ({res['code']})", patternId=res['source'], line=location['line'])
     return list(createResults())
