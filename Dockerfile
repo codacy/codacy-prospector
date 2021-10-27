@@ -1,12 +1,11 @@
-FROM python:3.8-slim
+FROM python:3.9.7-alpine3.14
 COPY requirements.txt requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
 COPY src/codacy_prospector.py codacy_prospector.py
 COPY src/codacy_prospector_test.py codacy_prospector_test.py
 COPY docs /docs
-RUN useradd -u 2004 -U docker
-RUN mkdir /home/docker
+RUN adduser -u 2004 -D docker
 RUN chown -R docker:docker /docs /home/docker
 USER docker
-ENTRYPOINT [ "python3.8" ]
+ENTRYPOINT [ "python" ]
 CMD [ "codacy_prospector.py" ]
