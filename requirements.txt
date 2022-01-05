@@ -1,4 +1,4 @@
-mypy==0.910
+mypy==0.930
 prospector[with_everything]==1.5.3.1
 jsonpickle==2.0.0
 Django==4.0.1
