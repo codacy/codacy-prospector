@@ -4,4 +4,4 @@ jsonpickle==3.0.1
 Django==4.1.4
 Flask==2.2.2
 pylint==2.15.9
-pyroma==4.1.0
+packaging<22.0

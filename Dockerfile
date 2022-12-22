@@ -1,4 +1,4 @@
-FROM python:3.9.15-alpine3.16
+FROM python:3.9-alpine
 COPY requirements.txt requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
 COPY src/codacy_prospector.py codacy_prospector.py
