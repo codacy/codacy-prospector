@@ -3,4 +3,4 @@ prospector[with_everything]==1.7.7
 jsonpickle==3.0.1
 Django==4.1.5
 Flask==2.2.2
-pylint==2.15.5
+pylint==2.16.0
