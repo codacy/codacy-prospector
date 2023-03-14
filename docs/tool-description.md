@@ -1,3 +1,1 @@
-Prospector is a tool to analyze Python code and output information about errors, potential problems, convention violations and complexity.
-
-It brings together the functionality of other Python analysis tools such as [Pylint](https://pylint.readthedocs.io/), [pep8](https://pep8.readthedocs.io/), and [McCabe complexity](https://pypi.python.org/pypi/mccabe).
+Prospector analyzes Python code and outputs information about errors, potential problems, convention violations and complexity. It brings together the functionality of other Python analysis tools such as Pylint, pep8, and McCabe complexity. [Learn more](https://github.com/PyCQA/prospector)
