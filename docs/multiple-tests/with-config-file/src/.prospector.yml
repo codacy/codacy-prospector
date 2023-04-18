@@ -42,6 +42,3 @@ vulture:
   disable:
     - unused-variable
     - unused-function
-
-uses:
-    - django
