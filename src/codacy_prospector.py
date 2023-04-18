@@ -88,7 +88,7 @@ def walkDirectory(directory):
     return list(generate())
 
 default_tools = {'pylint', 'pep8', 'pyflakes', 'mccabe', 'dodgy', 'pydocstyle', 'profile-validator', 'pep257'}
-extra_tools = {'frosted', 'vulture', 'pyroma', 'mypy','pylint_django'}
+extra_tools = {'frosted', 'vulture', 'pyroma', 'mypy'}
 
 def readConfiguration(configFile, srcDir):
     def allFiles(): return walkDirectory(srcDir)
