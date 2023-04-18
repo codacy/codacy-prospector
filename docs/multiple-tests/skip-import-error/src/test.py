@@ -1,7 +1,4 @@
-import requests
+import requests  # [unused-import]
+from logging import getLogger
 
-def main():
-    return 0
-
-
-main()
+LOGGER = getLogger(__name__)
