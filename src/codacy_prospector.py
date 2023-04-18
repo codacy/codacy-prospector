@@ -114,7 +114,7 @@ def chunks(lst,n):
 
 def runProspectorWith(options, files, cwd):
     res = runProspector(
-        ['--output-format=json'] + options,
+        ['--output-format=json','--load-plugins=pylint_django'] + options,
         files,
         cwd)
     return parseResult(res)
