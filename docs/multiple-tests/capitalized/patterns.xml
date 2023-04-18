@@ -8,7 +8,6 @@
     <module name="dodgy" />
     <module name="pydocstyle" />
     <module name="pep257" />
-    <module name="frosted" />
     <module name="vulture" />
     <module name="pyroma" />
     <module name="mypy" />
