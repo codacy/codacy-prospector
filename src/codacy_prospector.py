@@ -71,7 +71,7 @@ def isPython3(f):
         return True
 
 def parseResult(json_text):
-    print(json_text)
+    print("testing")
     messages = json.loads(json_text)["messages"]
     def createResults():
         for res in messages:
