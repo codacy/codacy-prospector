@@ -117,7 +117,6 @@ def runProspectorWith(options, files, cwd):
         ['--output-format=json'] + options,
         files,
         cwd)
-    print("testing")
     return parseResult(res)
 
 def runTool(configFile, srcDir):
