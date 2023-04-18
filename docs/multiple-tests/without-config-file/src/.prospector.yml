@@ -15,13 +15,14 @@ pyroma:
   run: true
 
 pylint:
-  run: true
   disable:
     - bad-builtin
     - too-few-public-methods
     - missing-docstring
     - star-args
     - use-symbolic-message-instead
+  load-plugins:
+    - pylint-django
 
 pep8:
   full: true
