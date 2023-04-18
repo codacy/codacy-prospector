@@ -71,7 +71,6 @@ def isPython3(f):
         return True
 
 def parseResult(json_text):
-    print("testing")
     messages = json.loads(json_text)["messages"]
     def createResults():
         for res in messages:
@@ -118,6 +117,7 @@ def runProspectorWith(options, files, cwd):
         ['--output-format=json'] + options,
         files,
         cwd)
+    print("testing")
     return parseResult(res)
 
 def runTool(configFile, srcDir):
