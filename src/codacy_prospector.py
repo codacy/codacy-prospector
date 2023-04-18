@@ -71,6 +71,7 @@ def isPython3(f):
         return True
 
 def parseResult(json_text):
+    print(json_text)
     messages = json.loads(json_text)["messages"]
     def createResults():
         for res in messages:
@@ -87,7 +88,7 @@ def walkDirectory(directory):
     return list(generate())
 
 default_tools = {'pylint', 'pep8', 'pyflakes', 'mccabe', 'dodgy', 'pydocstyle', 'profile-validator', 'pep257'}
-extra_tools = {'frosted', 'vulture', 'pyroma', 'mypy'}
+extra_tools = {'frosted', 'vulture', 'pyroma', 'mypy','pylint_django'}
 
 def readConfiguration(configFile, srcDir):
     def allFiles(): return walkDirectory(srcDir)
