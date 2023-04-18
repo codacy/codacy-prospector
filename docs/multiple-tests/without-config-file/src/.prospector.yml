@@ -21,8 +21,6 @@ pylint:
     - missing-docstring
     - star-args
     - use-symbolic-message-instead
-  load-plugins:
-    - pylint-django
 
 pep8:
   full: true
