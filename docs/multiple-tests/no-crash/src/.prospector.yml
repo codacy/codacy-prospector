@@ -19,7 +19,7 @@ pylint:
     - star-args
     - use-symbolic-message-instead
 
-pep257:
+pydocstyle:
   disable:
     - D100
     - D101
@@ -29,6 +29,9 @@ pep257:
     - D400
     - D401
     - D415
+
+pycodestyle:
+  run: true
 
 vulture:
   disable:
