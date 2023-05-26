@@ -67,11 +67,10 @@ class ProspectorTest(unittest.TestCase):
             
             expectedOptions = {'--without-tool=pylint',
                                '--without-tool=pydocstyle',
+                               '--without-tool=pycodestyle',
                                '--without-tool=dodgy',
                                '--without-tool=mccabe',
                                '--without-tool=pyflakes',
-                               '--without-tool=pep257',
-                               '--without-tool=pep8',
                                '--without-tool=profile-validator',
                                '--with-tool=pyroma'}
             expectedFiles = ['C0111.py']

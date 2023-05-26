@@ -2,7 +2,6 @@
 
 <module name="root">
     <module name="pylint" />
-    <module name="pep8" />
     <module name="pyflakes" />
     <module name="mccabe" />
     <module name="dodgy" />

@@ -1,15 +1,9 @@
 {
   "name": "prospector",
-  "version": "1.9.0",
+  "version": "1.10.2",
   "patterns": [
     {
       "patternId": "pylint",
-      "category": "CodeStyle",
-      "level": "Info",
-      "enabled": false
-    },
-    {
-      "patternId": "pep8",
       "category": "CodeStyle",
       "level": "Info",
       "enabled": false
@@ -34,15 +28,21 @@
       "enabled": true
     },
     {
+      "patternId": "pycodestyle",
+      "category": "CodeStyle",
+      "level": "Info",
+      "enabled": true
+    },
+    {
       "patternId": "pydocstyle",
       "category": "CodeStyle",
       "level": "Info",
       "enabled": true
     },
     {
-      "patternId": "pep257",
+      "patternId": "profile-validator",
       "category": "CodeStyle",
-      "level": "Info",
+      "level": "Warning",
       "enabled": true
     },
     {
@@ -67,6 +67,12 @@
       "patternId": "bandit",
       "category": "Security",
       "level": "Warning",
+      "enabled": false
+    },
+    {
+      "patternId": "pyright",
+      "category": "CodeStyle",
+      "level": "Info",
       "enabled": false
     }
   ]
