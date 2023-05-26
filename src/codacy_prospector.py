@@ -88,8 +88,8 @@ def walkDirectory(directory):
             yield res
     return list(generate())
 
-default_tools = {'pylint', 'pep8', 'pyflakes', 'mccabe', 'dodgy', 'pydocstyle', 'profile-validator', 'pep257'}
-extra_tools = {'vulture', 'pyroma', 'mypy'}
+default_tools = {'pylint', 'pyflakes', 'mccabe', 'dodgy', 'pydocstyle', 'profile-validator','pycodestyle'}
+extra_tools = {'vulture', 'pyroma', 'mypy','bandit','pyright'}
 
 def readConfiguration(configFile, srcDir):
     def allFiles(): return walkDirectory(srcDir)

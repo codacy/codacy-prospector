@@ -20,11 +20,6 @@ pylint:
     - star-args
     - use-symbolic-message-instead
 
-pep8:
-  full: true
-  disable:
-    - E126
-
 pep257:
   disable:
     - D100
