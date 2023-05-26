@@ -46,12 +46,6 @@
       "enabled": true
     },
     {
-      "patternId": "frosted",
-      "category": "CodeStyle",
-      "level": "Info",
-      "enabled": false
-    },
-    {
       "patternId": "vulture",
       "category": "CodeStyle",
       "level": "Info",
