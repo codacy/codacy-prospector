@@ -9,9 +9,6 @@ autodetect: false
 ignore-paths:
   - docs/
 
-frosted:
-  run: false
-
 pyroma:
   run: true
 
