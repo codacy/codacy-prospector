@@ -1,10 +1,10 @@
 mypy==1.11.1
 prospector[with_everything]==1.10.3
 jsonpickle==3.2.2
-Django==5.0.7
+Django==5.1
 Flask==3.0.3
 #can't upgrade to the latest version of Pylint due to a mismatch on astroid versions
-#requirements-detector 1.2.2 depends on astroid<3.0 and >=2.0
-#pylint 3.2.6 depends on astroid<=3.3.0-dev0 and >=3.2.4
+#requirements-detector (from prospector) 1.2.2 depends on astroid<3.0 and >=2.0
+#pylint 3.x depends on astroid<=3.3.0-dev0 and >=3.2.4
 pylint==2.17.7
 
