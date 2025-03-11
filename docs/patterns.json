@@ -74,6 +74,12 @@
       "category": "CodeStyle",
       "level": "Info",
       "enabled": false
+    },
+    {
+      "patternId": "ruff",
+      "category": "CodeStyle",
+      "level": "Warning",
+      "enabled": false
     }
   ]
 }
