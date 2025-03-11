@@ -89,7 +89,7 @@ def walkDirectory(directory):
     return list(generate())
 
 default_tools = {'pylint', 'pyflakes', 'mccabe', 'dodgy', 'pydocstyle', 'profile-validator','pycodestyle'}
-extra_tools = {'vulture', 'pyroma', 'mypy','bandit','pyright'}
+extra_tools = {'vulture', 'pyroma', 'mypy','bandit','pyright', 'ruff'}
 
 def readConfiguration(configFile, srcDir):
     def allFiles(): return walkDirectory(srcDir)
