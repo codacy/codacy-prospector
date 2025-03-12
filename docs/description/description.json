@@ -70,11 +70,5 @@
     "title": "vulture tool",
     "description": "Vulture finds unused classes, functions and variables in your code. This could be useful if your project is an application rather than a library, however, if you do a lot of dynamic access or metaprogramming, Vulture will likely warn about unused code that is in fact used.",
     "timeToFix": 5
-  },
-  {
-    "patternId": "ruff",
-    "title": "ruff tool",
-    "description": "Ruff is a high-performance Python linter designed as a drop-in replacement for Flake8, Black, isort, pydocstyle, pyupgrade, autoflake, and other plugins, while running faster than any single tool. Optimized for speed and efficiency, it is well-suited for large codebases.",
-    "timeToFix": 5
   }
 ]
