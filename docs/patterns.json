@@ -1,6 +1,6 @@
 {
   "name": "prospector",
-  "version": "1.15.3",
+  "version": "1.17.2",
   "patterns": [
     {
       "patternId": "pylint",
