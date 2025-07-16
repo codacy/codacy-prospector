@@ -1,7 +1,6 @@
-mypy==1.15.0
+mypy==1.17.0
 prospector[with_everything]==1.17.2
 jsonpickle==4.0.2
 Django==5.1.7
-Flask==3.1.0
-pylint==3.3.5
-
+pylint==3.3.7
+Flask==3.1.1
