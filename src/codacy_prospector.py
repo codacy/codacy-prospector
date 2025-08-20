@@ -26,17 +26,18 @@ def getTimeout(timeoutString):
     return int(timeoutString)
 
 class Result:
-    def __init__(self, filename, message, patternId, line):
+    def __init__(self, filename, message, patternId, line, sourceId):
         self.filename = filename
         self.message = message
         self.patternId = patternId
         self.line = line
+        self.sourceId = sourceId
     def __str__(self):
-        return f'Result({self.filename},{self.message},{self.patternId},{self.line})'
+        return f'Result({self.filename},{self.message},{self.patternId},{self.line},{self.sourceId})'
     def __repr__(self):
         return self.__str__()
     def __eq__(self, o):
-        return self.filename == o.filename and self.message == o.message and self.patternId == o.patternId and self.line == o.line
+        return self.filename == o.filename and self.message == o.message and self.patternId == o.patternId and self.line == o.line and self.sourceId == o.sourceId
 
 def toJson(obj): return jsonpickle.encode(obj, unpicklable=False)
 
@@ -78,7 +79,7 @@ def parseResult(json_text):
         for res in messages:
             if res['code'] != 'failure' and res['code'] != 'import-error':
                 location = res['location']
-                yield Result(filename=location['path'], message=f"{res['message']} ({res['code']})", patternId=res['source'], line=location['line'])
+                yield Result(filename=location['path'], message=f"{res['message']} ({res['code']})", patternId=res['source'], line=location['line'], sourceId=res['code'])
     return list(createResults())
 
 def walkDirectory(directory):
