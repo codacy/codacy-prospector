@@ -42,9 +42,9 @@ def dup_function():
 
 class ResultTest(unittest.TestCase):
     def test_toJson(self):
-        result = Result("file.py", "message", "id", 80)
+        result = Result("file.py", "message", "id", 80, "E0102")
         res = toJson(result)
-        expected = '{"filename": "file.py", "message": "message", "patternId": "id", "line": 80}'
+        expected = '{"filename": "file.py", "message": "message", "patternId": "id", "line": 80, "sourceId": "E0102"}'
         self.assertEqual(res, expected)
 
 class ProspectorTest(unittest.TestCase):
