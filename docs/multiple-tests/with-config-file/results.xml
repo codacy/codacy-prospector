@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <checkstyle version="1.5">
     <file name="example.py">
-        <error source="pyflakes:" line="1" message="'os' imported but unused" severity="info" />
-        <error source="pycodestyle" line="4" message="line too long (127 > 120 characters)" severity="info" />
-        <error source="pycodestyle" line="6" message="expected 2 blank lines, found 1" severity="info" />
-        <error source="pycodestyle" line="14" message="blank line contains whitespace" severity="info" />
-        <error source="pycodestyle" line="16" message="trailing whitespace" severity="info" />
-        <error source="pycodestyle" line="17" message="no newline at end of file" severity="info" />
+        <error source="pylint:" line="1" message="Unused import os (unused-import)" severity="info" />
+        <error source="pylint" line="4" message="Line too long (127/120) (line-too-long)" severity="info" />
+        <error source="pycodestyle" line="6" message="expected 2 blank lines, found 1 (E302)" severity="info" />
+        <error source="pylint" line="14" message="Trailing whitespace (trailing-whitespace)" severity="info" />
+        <error source="pylint" line="16" message="Trailing whitespace (trailing-whitespace)" severity="info" />
+        <error source="pylint" line="17" message="Final newline missing (missing-final-newline)" severity="info" />
     </file>
 </checkstyle>
