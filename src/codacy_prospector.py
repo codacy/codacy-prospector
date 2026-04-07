@@ -126,7 +126,6 @@ def runTool(configFile, srcDir):
     (options, files) = readConfiguration(configFile, srcDir)
     res = []
     filesWithPath = [os.path.join(srcDir,f) for f in files]
-    print(options)
     for chunk in chunks(filesWithPath, 10):
         res.extend(runProspectorWith(options, chunk, srcDir))
     for result in res:
