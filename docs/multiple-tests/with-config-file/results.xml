@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <checkstyle version="1.5">
     <file name="example.py">
-        <error source="pydocstyle" line="1" message="Multi-line docstring summary should start at the first line (D212)" severity="info" />
-        <error source="pylint" line="99" message="No value for argument 'on_delete' in constructor call (no-value-for-parameter)" severity="info" />
-        <error source="pylint" line="100" message="No value for argument 'on_delete' in constructor call (no-value-for-parameter)" severity="info" />
-        <error source="pylint" line="114" message="No value for argument 'on_delete' in constructor call (no-value-for-parameter)" severity="info" />
-        <error source="pylint" line="125" message="No value for argument 'on_delete' in constructor call (no-value-for-parameter)" severity="info" />
+        <error source="pyflakes:" line="1" message="'os' imported but unused" severity="info" />
+        <error source="pycodestyle" line="4" message="line too long (127 > 120 characters)" severity="info" />
+        <error source="pycodestyle" line="6" message="expected 2 blank lines, found 1" severity="info" />
+        <error source="pycodestyle" line="14" message="blank line contains whitespace" severity="info" />
+        <error source="pycodestyle" line="16" message="trailing whitespace" severity="info" />
+        <error source="pycodestyle" line="17" message="no newline at end of file" severity="info" />
     </file>
 </checkstyle>
