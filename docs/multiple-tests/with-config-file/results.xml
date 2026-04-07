@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <checkstyle version="1.5">
     <file name="example.py">
-        <error source="pylint:" line="1" message="Unused import os (unused-import)" severity="info" />
+        <error source="pylint" line="1" message="Unused import os (unused-import)" severity="info" />
         <error source="pylint" line="4" message="Line too long (127/120) (line-too-long)" severity="info" />
         <error source="pycodestyle" line="6" message="expected 2 blank lines, found 1 (E302)" severity="info" />
         <error source="pylint" line="14" message="Trailing whitespace (trailing-whitespace)" severity="info" />
