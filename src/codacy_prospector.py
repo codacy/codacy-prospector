@@ -8,7 +8,6 @@ import glob
 import signal
 from contextlib import contextmanager
 import traceback
-import django
 import re
 
 @contextmanager
