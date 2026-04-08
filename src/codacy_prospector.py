@@ -8,7 +8,6 @@ import glob
 import signal
 from contextlib import contextmanager
 import traceback
-import django
 import re
 
 @contextmanager
@@ -89,8 +88,7 @@ def walkDirectory(directory):
             yield res
     return list(generate())
 
-default_tools = {'pylint', 'pyflakes', 'mccabe', 'dodgy', 'pydocstyle', 'profile-validator','pycodestyle'}
-extra_tools = {'vulture', 'pyroma', 'mypy','bandit','pyright'}
+all_tools = {'pylint', 'pyflakes', 'mccabe', 'dodgy', 'pydocstyle', 'profile-validator','pycodestyle','vulture', 'pyroma', 'mypy','bandit','pyright'}
 
 def readConfiguration(configFile, srcDir):
     def allFiles(): return walkDirectory(srcDir)
@@ -98,11 +96,11 @@ def readConfiguration(configFile, srcDir):
         configuration = readJsonFile(configFile)
         files = configuration.get('files') or allFiles()
         tools = [t for t in configuration['tools'] if t['name'] == 'prospector']
-        if tools and 'patterns' in tools[0]:
+        if tools and tools[0].get('patterns'): 
             prospector = tools[0]
             tools = set([p['patternId'] for p in prospector.get('patterns') or []])
-            tools_to_disable = default_tools.difference(tools)
-            tools_to_enable = extra_tools.intersection(tools)
+            tools_to_disable = all_tools.difference(tools)
+            tools_to_enable = all_tools.intersection(tools)
             options = [f"--without-tool={t}" for t in tools_to_disable] + [f"--with-tool={t}" for t in tools_to_enable] 
         else:
             options = []

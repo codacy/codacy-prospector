@@ -72,6 +72,11 @@ class ProspectorTest(unittest.TestCase):
                                '--without-tool=mccabe',
                                '--without-tool=pyflakes',
                                '--without-tool=profile-validator',
+                               '--without-tool=vulture',
+                               '--without-tool=mypy',
+                               '--without-tool=bandit',
+                               '--without-tool=pyright',
+                               '--without-tool=profile-validator',
                                '--with-tool=pyroma'}
             expectedFiles = ['C0111.py']
             

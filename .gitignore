@@ -11,3 +11,7 @@ target
 __pycache__
 .mypy_cache
 default.profraw
+
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md
