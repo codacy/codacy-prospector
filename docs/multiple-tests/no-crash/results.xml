@@ -2,6 +2,7 @@
 <checkstyle version="1.5">
     <file name="example.py">
         <error source="pycodestyle" line="1" message="block comment should start with '# ' (E265)" severity="info" />
+        <error source="pylint" line="2" message="Undefined variable 'a' (undefined-variable)" severity="info" />
         <error source="pycodestyle" line="3" message="block comment should start with '# ' (E265)" severity="info" />
     </file>
 </checkstyle>
