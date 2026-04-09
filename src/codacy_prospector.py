@@ -74,10 +74,10 @@ def isPython3(f):
 
 def parseResult(json_text):
     messages = json.loads(json_text).get('messages',[])
-    avoid_codes = {'failure', "django-not-configured", "import-error"}
+    denylist_codes = {'failure', "django-not-configured", "import-error"}
     def createResults():
         for res in messages:
-            if res['code'] not in avoid_codes:
+            if res['code'] not in denylist_codes:
                 location = res['location']
                 yield Result(filename=location['path'], message=f"{res['message']} ({res['code']})", patternId=res['source'], line=location['line'], sourceId=res['code'])
     return list(createResults())
