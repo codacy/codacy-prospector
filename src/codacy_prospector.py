@@ -73,10 +73,11 @@ def isPython3(f):
         return True
 
 def parseResult(json_text):
-    messages = json.loads(json_text)['messages']
+    messages = json.loads(json_text).get('messages',[])
+    avoid_codes = {'failure', "django-not-configured", "import-error"}
     def createResults():
         for res in messages:
-            if res['code'] != 'failure' and res['code'] != 'import-error':
+            if res['code'] not in avoid_codes:
                 location = res['location']
                 yield Result(filename=location['path'], message=f"{res['message']} ({res['code']})", patternId=res['source'], line=location['line'], sourceId=res['code'])
     return list(createResults())
