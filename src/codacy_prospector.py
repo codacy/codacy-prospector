@@ -73,7 +73,16 @@ def isPython3(f):
         return True
 
 def parseResult(json_text):
-    messages = json.loads(json_text)["messages"]
+    try:
+        start = json_text.find('{')
+        end = json_text.rfind('}') + 1
+        if start == -1 or end == 0:
+            return [] # No valid JSON found
+        
+        messages = json.loads(json_text[start:end])['messages']
+    except json.JSONDecodeError:
+        return []
+    
     def createResults():
         for res in messages:
             if res['code'] != 'failure' and res['code'] != 'import-error':
