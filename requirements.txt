@@ -1,4 +1,4 @@
-prospector[with_everything]==1.18.0
+prospector[with_everything]==1.19.0
 jsonpickle==4.1.1
 Django==6.0.4
 pylint==4.0.5
