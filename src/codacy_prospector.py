@@ -74,7 +74,7 @@ def isPython3(f):
 
 def parseResult(json_text):
     messages = json.loads(json_text).get('messages',[])
-    denylist_codes = {'failure', "django-not-configured", "import-error"}
+    denylist_codes = {'failure', "django-not-configured", "import-error", 'D203'}
     def createResults():
         for res in messages:
             if res['code'] not in denylist_codes:
