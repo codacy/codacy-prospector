@@ -49,9 +49,12 @@ def runProspector(options, files, cwd=None):
     process = Popen(
         ['python3', '-m', 'prospector'] + options + files,
         stdout=PIPE,
+        stderr=PIPE,
         cwd=cwd
     )
-    stdout = process.communicate()[0]
+    stdout, stderr = process.communicate()
+    if stderr:
+        print(f"Prospector stderr: {stderr.decode('utf-8')}", file=sys.stderr)
     return stdout.decode('utf-8')
 
 def isPython3(f):
@@ -73,7 +76,12 @@ def isPython3(f):
         return True
 
 def parseResult(json_text):
-    messages = json.loads(json_text).get('messages',[])
+    try:
+        messages = json.loads(json_text).get('messages',[])
+    except (json.JSONDecodeError, ValueError) as e:
+        # Prospector failed or output is not JSON (e.g., due to E101 errors with pydocstyle)
+        print(f"Failed to parse Prospector output: {e}", file=sys.stderr)
+        return []
     denylist_codes = {'failure', "django-not-configured", "import-error", 'D203'}
     def createResults():
         for res in messages:
