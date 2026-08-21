@@ -49,9 +49,12 @@ def runProspector(options, files, cwd=None):
     process = Popen(
         ['python3', '-m', 'prospector'] + options + files,
         stdout=PIPE,
+        stderr=PIPE,
         cwd=cwd
     )
-    stdout = process.communicate()[0]
+    stdout, stderr = process.communicate()
+    if stderr:
+        print(f"Prospector stderr: {stderr.decode('utf-8', errors='replace')}", file=sys.stderr)
     return stdout.decode('utf-8')
 
 def isPython3(f):
@@ -73,13 +76,37 @@ def isPython3(f):
         return True
 
 def parseResult(json_text):
-    messages = json.loads(json_text).get('messages',[])
+    try:
+        data = json.loads(json_text)
+    except json.JSONDecodeError as e:
+        # Prospector failed or output is not JSON (e.g., due to E101 errors with pydocstyle)
+        print(f"Failed to parse Prospector output: {e}", file=sys.stderr)
+        return []
+
+    if not isinstance(data, dict):
+        print(f"Unexpected Prospector output type: {type(data).__name__}", file=sys.stderr)
+        return []
+
+    messages = data.get('messages', [])
     denylist_codes = {'failure', "django-not-configured", "import-error", 'D203'}
+
     def createResults():
         for res in messages:
-            if res['code'] not in denylist_codes:
+            try:
+                if res['code'] in denylist_codes:
+                    continue
                 location = res['location']
-                yield Result(filename=location['path'], message=f"{res['message']} ({res['code']})", patternId=res['source'], line=location['line'], sourceId=res['code'])
+                yield Result(
+                    filename=location['path'],
+                    message=f"{res['message']} ({res['code']})",
+                    patternId=res['source'],
+                    line=location['line'],
+                    sourceId=res['code'],
+                )
+            except (KeyError, TypeError) as e:
+                print(f"Skipping malformed Prospector message ({e}): {res}", file=sys.stderr)
+                continue
+
     return list(createResults())
 
 def walkDirectory(directory):

@@ -1,0 +1,1 @@
+/Users/davidmarinho/Documents/dev/codacy-prospector/src/codacy_prospector.py
