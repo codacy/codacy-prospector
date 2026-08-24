@@ -73,44 +73,15 @@ def isPython3(f):
         return True
 
 def parseResult(json_text):
-    json_text = json_text.strip()
-    if not json_text:
-        print("Prospector produced no output", file=sys.stderr)
-        return []
-    try:
-        data = json.loads(json_text)
-    except json.JSONDecodeError as e:
-        print(f"Failed to parse Prospector output: {e}", file=sys.stderr)
-        return []
-
-    if not isinstance(data, dict):
-        print(f"Unexpected Prospector output type: {type(data).__name__}", file=sys.stderr)
-        return []
-
-    messages = data.get('messages', [])
+    messages = json.loads(json_text).get('messages',[])
     denylist_codes = {'failure', "django-not-configured", "import-error", 'D203'}
-
     def createResults():
         for res in messages:
-            try:
-                if res['code'] in denylist_codes:
-                    continue
+            if res['code'] not in denylist_codes:
                 location = res['location']
-                line = location['line'] if location['line'] is not None else 1
                 yield Result(
-                    filename=location['path'],
-                    message=f"{res['message']} ({res['code']})",
-                    patternId=res['source'],
-                    line=line,
-                    sourceId=res['code'],
-                )
-            except (KeyError, TypeError) as e:
-                code = res.get('code', 'UNKNOWN')
-                message = res.get('message', 'NO_MESSAGE')
-                print(f"Skipping malformed message for {code}: {message} - Missing/invalid field: {e}", file=sys.stderr)
-                print(f"  Full message object: {json.dumps(res, indent=2)}", file=sys.stderr)
-                continue
-
+                    filename=location['path'], 
+                    message=f"{res['message']} ({res['code']})", patternId=res['source'], line=location['line'] if location['line'] is not None else 1, sourceId=res['code'])
     return list(createResults())
 
 def walkDirectory(directory):
