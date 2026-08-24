@@ -47,21 +47,11 @@ def readJsonFile(path):
 
 def runProspector(options, files, cwd=None):
     process = Popen(
-        ['python3', '-W', 'ignore::DeprecationWarning', '-m', 'prospector'] + options + files,
+        ['python3', '-m', 'prospector'] + options + files,
         stdout=PIPE,
-        stderr=PIPE,
         cwd=cwd
     )
-    stdout, stderr = process.communicate()
-    if stderr:
-        stderr_text = stderr.decode('utf-8', errors='replace')
-        # Filter out deprecation warnings about [pep8] -> [pycodestyle]
-        filtered_stderr = '\n'.join(
-            line for line in stderr_text.split('\n')
-            if not any(skip in line for skip in ['[pep8]', 'pycodestyle', 'DeprecationWarning'])
-        ).strip()
-        if filtered_stderr:
-            print(f"Prospector stderr: {filtered_stderr}", file=sys.stderr)
+    stdout = process.communicate()[0]
     return stdout.decode('utf-8')
 
 def isPython3(f):
@@ -90,7 +80,6 @@ def parseResult(json_text):
     try:
         data = json.loads(json_text)
     except json.JSONDecodeError as e:
-        # Prospector failed or output is not JSON (e.g., due to E101 errors with pydocstyle)
         print(f"Failed to parse Prospector output: {e}", file=sys.stderr)
         return []
 
@@ -107,11 +96,12 @@ def parseResult(json_text):
                 if res['code'] in denylist_codes:
                     continue
                 location = res['location']
+                line = location['line'] if location['line'] is not None else 1
                 yield Result(
                     filename=location['path'],
                     message=f"{res['message']} ({res['code']})",
                     patternId=res['source'],
-                    line=location['line'],
+                    line=line,
                     sourceId=res['code'],
                 )
             except (KeyError, TypeError) as e:
