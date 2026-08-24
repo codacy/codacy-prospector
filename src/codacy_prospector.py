@@ -13,7 +13,7 @@ import re
 @contextmanager
 def timeout(time):
     # Register a function to raise a TimeoutError on the signal.
-    signal.signal(signal.SIGALRM, lambda: sys.exit(2))
+    signal.signal(signal.SIGALRM, lambda signum, frame: sys.exit(2))
     # Schedule the signal to be sent after ``time``.
     signal.alarm(time)
     yield
@@ -38,7 +38,7 @@ class Result:
     def __eq__(self, o):
         return self.filename == o.filename and self.message == o.message and self.patternId == o.patternId and self.line == o.line and self.sourceId == o.sourceId
 
-def toJson(obj): return jsonpickle.encode(obj, unpicklable=False)
+def toJson(obj): return jsonpickle.encode(obj, unpicklable=False, keys=True)
 
 def readJsonFile(path):
     with open(path, 'r') as file:
@@ -47,14 +47,21 @@ def readJsonFile(path):
 
 def runProspector(options, files, cwd=None):
     process = Popen(
-        ['python3', '-m', 'prospector'] + options + files,
+        ['python3', '-W', 'ignore::DeprecationWarning', '-m', 'prospector'] + options + files,
         stdout=PIPE,
         stderr=PIPE,
         cwd=cwd
     )
     stdout, stderr = process.communicate()
     if stderr:
-        print(f"Prospector stderr: {stderr.decode('utf-8', errors='replace')}", file=sys.stderr)
+        stderr_text = stderr.decode('utf-8', errors='replace')
+        # Filter out deprecation warnings about [pep8] -> [pycodestyle]
+        filtered_stderr = '\n'.join(
+            line for line in stderr_text.split('\n')
+            if not any(skip in line for skip in ['[pep8]', 'pycodestyle', 'DeprecationWarning'])
+        ).strip()
+        if filtered_stderr:
+            print(f"Prospector stderr: {filtered_stderr}", file=sys.stderr)
     return stdout.decode('utf-8')
 
 def isPython3(f):
@@ -76,6 +83,10 @@ def isPython3(f):
         return True
 
 def parseResult(json_text):
+    json_text = json_text.strip()
+    if not json_text:
+        print("Prospector produced no output", file=sys.stderr)
+        return []
     try:
         data = json.loads(json_text)
     except json.JSONDecodeError as e:
@@ -104,7 +115,10 @@ def parseResult(json_text):
                     sourceId=res['code'],
                 )
             except (KeyError, TypeError) as e:
-                print(f"Skipping malformed Prospector message ({e}): {res}", file=sys.stderr)
+                code = res.get('code', 'UNKNOWN')
+                message = res.get('message', 'NO_MESSAGE')
+                print(f"Skipping malformed message for {code}: {message} - Missing/invalid field: {e}", file=sys.stderr)
+                print(f"  Full message object: {json.dumps(res, indent=2)}", file=sys.stderr)
                 continue
 
     return list(createResults())
